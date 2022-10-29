@@ -1,0 +1,13 @@
+.movieList {
+  list-style: none;
+  display: flex;
+  background-color: yellowgreen;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.movieListItem {
+  background-color: brown;
+  margin: 5px;
+  height: 5rem;
+}
