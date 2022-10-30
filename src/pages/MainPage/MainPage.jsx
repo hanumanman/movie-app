@@ -1,33 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../components/Header/navbar/NavBar";
 import MovieList from "../../components/MovieList/MovieList";
 import Preview from "../../components/Preview/Preview";
-import { API_KEY } from "../../app/API/config";
-import apiService from "../../app/API/APIService";
+import useFetch from "../../hooks/useFetch";
 
 function MainPage() {
-  useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const res = await apiService.get(
-          `discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc`
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getMovies();
-  }, []);
-
+  const { data, loading, error } = useFetch(
+    "https://api.themoviedb.org/3/discover/movie?api_key=c3d0338c685314581c50db43fa93a914&with_genres=14"
+  );
+  console.log(`genres list request`, data);
   return (
     <div>
       <NavBar />
       <Preview />
-      <MovieList />
-      <MovieList />
-      <MovieList />
-      <MovieList />
-      <MovieList />
+      {/* <MovieList imgFiles={imgFile}/> */}
+
+      <MovieList genres={"Action"} />
+      <MovieList genres={"Horror"} />
+      <MovieList genres={"Animation"} />
     </div>
   );
 }

@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MovieList.css";
+import useFetch from "../../hooks/useFetch";
+import { API_KEY, BASE_URL } from "../../app/API/config";
+import MovieCard from "../MovieCard/MovieCard";
 
-const movies = [{ name: "movie1" }, { name: "movie2" }, { name: "movie3" }];
+function MovieList({ genres }) {
+  const [results, setResults] = useState([]);
+  console.log(genres);
+  const { data, loading, error } = useFetch(
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genres}`
+  );
 
-function MovieList() {
+  useEffect(() => {
+    data ? setResults(data.results) : null;
+    console.log(data);
+    console.log(results);
+  }, [data, results]);
+
   return (
     <>
       <ul className="movieList">
-        {movies.map((movie, index) => (
-          <li key={`movie${index}`}>
-            <div className="movieListItem">{movie.name}</div>
-          </li>
-        ))}
+        {results &&
+          results.map((result, index) => (
+            <li key={`movie${index}`}>
+              <MovieCard imgPath={result.poster_path} />
+            </li>
+          ))}
       </ul>
     </>
   );

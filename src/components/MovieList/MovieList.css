@@ -4,6 +4,12 @@
   background-color: yellowgreen;
   margin: 0;
   margin-bottom: 5px;
+  overflow-x: scroll;
+  padding: 0;
+}
+
+.movieList::-webkit-scrollbar {
+  display: none;
 }
 
 .movieListItem {
