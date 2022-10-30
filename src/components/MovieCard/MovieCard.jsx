@@ -11,18 +11,10 @@ import Typography from "@mui/material/Typography";
 
 function MovieCard({ imgPath }) {
   return (
-    <Card sx={{ width: 200, height: 300 }}>
-      <CardMedia
-        component="img"
-        width="500"
-        image={`${IMG_BASE_URL}${imgPath}`}
-        alt="green iguana"
-      />
-
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
+    <Card sx={{ width: 200, height: 300, borderRadius: 0 }}>
+      <CardContent sx={{ padding: 0 }}>
+        <img src={`${IMG_BASE_URL}${imgPath}`} alt=""></img>
+      </CardContent>
     </Card>
   );
 }

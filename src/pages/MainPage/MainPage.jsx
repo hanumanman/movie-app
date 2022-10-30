@@ -15,9 +15,9 @@ function MainPage() {
       <Preview />
       {/* <MovieList imgFiles={imgFile}/> */}
 
-      <MovieList genres={"Action"} />
-      <MovieList genres={"Horror"} />
-      <MovieList genres={"Animation"} />
+      <MovieList genresId={"Action"} />
+      <MovieList genresId={"18"} />
+      <MovieList genresId={"53"} />
     </div>
   );
 }

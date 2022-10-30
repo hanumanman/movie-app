@@ -1,5 +1,21 @@
+video {
+  position: absolute;
+  object-fit: cover;
+}
+
 #moviePreview {
-  width: 100vw;
-  height: 20vh;
-  background-color: turquoise;
+  position: relative;
+  width: 100%;
+  height: 452px;
+}
+
+#previewDetail {
+  position: absolute;
+  top: 41%;
+  left: 2em;
+}
+
+#previewDetail h2,
+p {
+  color: white;
 }
