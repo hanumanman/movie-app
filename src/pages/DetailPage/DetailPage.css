@@ -1,0 +1,41 @@
+#detailContainer {
+  position: relative;
+  background-color: #141414;
+  height: 100vh;
+  color: white;
+}
+
+#detailImg {
+  width: 100%;
+  height: auto;
+}
+
+#detailPoster {
+  position: relative;
+}
+
+#gradient {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 10vh;
+  background: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 80%
+  );
+}
+
+.detailLogo {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  height: 10vh;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+}

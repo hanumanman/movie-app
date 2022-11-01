@@ -1,0 +1,33 @@
+#dropdownBtn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+#dropdownBtn:hover {
+  background: none !important;
+  opacity: 1;
+  cursor: pointer;
+}
+
+#appBar {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  box-shadow: none;
+}
+
+#nfLogo {
+  height: 1.5rem;
+  margin: 0 0.6rem 0 0.6rem;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}

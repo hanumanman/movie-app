@@ -31,7 +31,7 @@ function Preview() {
               size="small"
               sx={{
                 backgroundColor: "white",
-                color: "black",
+                color: "#141414",
                 opacity: "0.9",
                 fontSize: "0.7rem",
               }}
