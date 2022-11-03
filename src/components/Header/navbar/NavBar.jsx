@@ -13,6 +13,7 @@ import NotflixLogo from "../../../assets/notflix.png";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import "./NavBar.css";
+import { Link } from "react-router-dom";
 
 const pages = ["Home", "TV Show", "Movies", "New & Popular"];
 
@@ -30,7 +31,6 @@ function ResponsiveAppBar() {
   return (
     <AppBar
       id="appBar"
-      position="static"
       style={{
         backgroundImage:
           "linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent)",
@@ -39,45 +39,10 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img id="nfLogo" src={NotflixLogo} alt="" />
-
-          <Box sx={{ flexGrow: 1, display: "flex" }}>
-            <button
-              id="dropdownBtn"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-            >
-              Browse
-              <ArrowDropDownIcon />
-            </button>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: "block",
-              }}
-              style={{ opacity: "0.7" }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          <Link to="/">
+            <img id="nfLogo" src={NotflixLogo} alt="" />
+          </Link>
+          <Link to="/browse"> Browse</Link>
         </Toolbar>
       </Container>
     </AppBar>

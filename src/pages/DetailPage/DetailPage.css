@@ -1,8 +1,9 @@
 #detailContainer {
-  position: relative;
-  background-color: #141414;
-  height: 100vh;
+  position: absolute;
+  background-color: #141414 !important;
+
   color: white;
+  top: 0;
 }
 
 #detailImg {

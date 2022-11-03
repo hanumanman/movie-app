@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../components/Header/navbar/NavBar";
 import MovieList from "../../components/MovieList/MovieList";
 import Preview from "../../components/Preview/Preview";
 import useFetch from "../../hooks/useFetch";
+import "./MainPage.css";
 
 function MainPage() {
   const { data, loading, error } = useFetch(
@@ -10,14 +10,15 @@ function MainPage() {
   );
   console.log(`genres list request`, data);
   return (
-    <div>
-      <NavBar />
-      <Preview />
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div>
+        <Preview />
+      </div>
       {/* <MovieList imgFiles={imgFile}/> */}
-
-      <MovieList genresId={"Action"} />
-      <MovieList genresId={"18"} />
-      <MovieList genresId={"53"} />
+      <div className="movie-list-wrapper">
+        <MovieList genresId={"28"} />
+        <MovieList genresId={"878"} />
+      </div>
     </div>
   );
 }

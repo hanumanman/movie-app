@@ -3,18 +3,19 @@ import "./MovieList.css";
 import useFetch from "../../hooks/useFetch";
 import { API_KEY, BASE_URL } from "../../app/API/config";
 import MovieCard from "../MovieCard/MovieCard";
+import { Link } from "react-router-dom";
 
 function MovieList({ genresId }) {
   const [results, setResults] = useState([]);
   console.log(genresId);
   const { data, loading, error } = useFetch(
-    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genresId}`
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genresId}&language=en-US`
   );
 
   useEffect(() => {
     data ? setResults(data.results) : null;
     console.log(data);
-    console.log(results);
+    console.log(`result`, results);
   }, [data, results]);
 
   return (
@@ -23,7 +24,9 @@ function MovieList({ genresId }) {
         {results &&
           results.map((result, index) => (
             <li key={`movie${index}`}>
-              <MovieCard imgPath={result.poster_path} />
+              <Link to={`/movie/${result.id}`}>
+                <MovieCard imgPath={result.poster_path} />
+              </Link>
             </li>
           ))}
       </ul>

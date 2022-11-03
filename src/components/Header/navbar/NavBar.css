@@ -1,21 +1,6 @@
-#dropdownBtn {
-  background: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  color: white;
-}
-
-#dropdownBtn:hover {
-  background: none !important;
-  opacity: 1;
-  cursor: pointer;
-}
-
 #appBar {
-  position: absolute;
+  position: sticky;
   top: 0;
-  z-index: 3;
   box-shadow: none;
 }
 
@@ -30,4 +15,9 @@
   flex-direction: column;
   align-items: center;
   border: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
