@@ -14,8 +14,6 @@ import { Link, Outlet, useNavigate, useSearchParams } from "react-router-dom";
 
 function FiltersPage() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };

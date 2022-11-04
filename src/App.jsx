@@ -20,7 +20,7 @@ function App() {
         <Route path="/browse" element={<FiltersPage />}>
           <Route path="genre/:genre" element={<FilterResults />} />
         </Route>
-        <Route path="search/:query" element={<SearchResult />} />
+        <Route path="/search/*" element={<SearchResult />} />
       </Routes>
     </React.Fragment>
   );
