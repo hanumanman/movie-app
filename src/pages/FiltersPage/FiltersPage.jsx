@@ -32,7 +32,7 @@ function FiltersPage() {
     const q = event.target.value;
     if (q) {
       console.log(`navigate`);
-      navigate(`/search`);
+      navigate("/search");
       setSearchParams({ q });
       //DISPATCH SEACRCH
     } else {
@@ -42,7 +42,7 @@ function FiltersPage() {
 
   return (
     <>
-      <OutlinedInput defaultValue={`search`} onChange={handleSearch} />
+      <OutlinedInput placeholder={`search`} onChange={handleSearch} />
       <div>Filter by genres</div>
       <div>Dropdown genres</div>
 

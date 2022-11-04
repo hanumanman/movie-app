@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { filterByGenre, removeState } from "../../reducers/filterSlice";
 import { IMG_BASE_URL } from "../../app/API/config";
@@ -20,14 +20,16 @@ function FilterResults() {
   }, [dispatch, genreId]);
 
   return (
-    <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+    <ImageList cols={3}>
       {movies?.map((item, index) => (
         <ImageListItem key={index}>
-          <img
-            src={`${IMG_BASE_URL}/${item.poster_path}`}
-            alt={item.title}
-            loading="lazy"
-          />
+          <Link to={`/movie/${item.id}`}>
+            <img
+              src={`${IMG_BASE_URL}/${item.poster_path}`}
+              alt={item.title}
+              loading="lazy"
+            />
+          </Link>
         </ImageListItem>
       ))}
     </ImageList>
@@ -35,3 +37,5 @@ function FilterResults() {
 }
 
 export default FilterResults;
+
+//sx={{ width: 500, height: 450 }} rowHeight={164}
