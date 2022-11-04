@@ -14,8 +14,6 @@ import { Link, Outlet, useNavigate, useSearchParams } from "react-router-dom";
 
 function FiltersPage() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -25,24 +23,9 @@ function FiltersPage() {
   };
 
   const genres = fetchGenres();
-  const dispatch = useDispatch();
-
-  const handleSearch = (event) => {
-    console.log(event.target.value);
-    const q = event.target.value;
-    if (q) {
-      console.log(`navigate`);
-      navigate(`/search`);
-      setSearchParams({ q });
-      //DISPATCH SEACRCH
-    } else {
-      setSearchParams({});
-    }
-  };
 
   return (
     <>
-      <OutlinedInput defaultValue={`search`} onChange={handleSearch} />
       <div>Filter by genres</div>
       <div>Dropdown genres</div>
 

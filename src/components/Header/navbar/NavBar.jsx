@@ -13,12 +13,16 @@ import NotflixLogo from "../../../assets/notflix.png";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { OutlinedInput } from "@mui/material";
 
 const pages = ["Home", "TV Show", "Movies", "New & Popular"];
 
 function ResponsiveAppBar() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  let q = searchParams.get("q");
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -28,6 +32,18 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    setSearchParams({ q: event.target.value });
+  };
+
+  React.useEffect(() => {
+    if (!q) {
+      navigate("/");
+    } else {
+      navigate("/search?q=" + q);
+    }
+  }, [searchParams]);
   return (
     <AppBar
       id="appBar"
@@ -43,6 +59,13 @@ function ResponsiveAppBar() {
             <img id="nfLogo" src={NotflixLogo} alt="" />
           </Link>
           <Link to="/browse"> Browse</Link>
+          <OutlinedInput
+            style={{ color: "red", border: "1px solid red" }}
+            placeholder="Search"
+            value={q}
+            defaultValue={``}
+            onChange={handleSearch}
+          />
         </Toolbar>
       </Container>
     </AppBar>
