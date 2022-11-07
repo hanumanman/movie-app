@@ -1,49 +1,35 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import Button from "@mui/material/Button";
 import NotflixLogo from "../../../assets/notflix.png";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import "./NavBar.css";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { OutlinedInput } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { updateBrowsing, updatePage } from "../../../reducers/filterSlice";
 
 const pages = ["Home", "TV Show", "Movies", "New & Popular"];
 
 function ResponsiveAppBar() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const dispatch = useDispatch();
   let q = searchParams.get("q");
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   const handleSearch = (event) => {
     event.preventDefault();
     setSearchParams({ q: event.target.value });
   };
 
+  const onlySpaces = /[^-\s]/;
   React.useEffect(() => {
-    if (!q) {
-      navigate("/");
-    } else {
-      navigate("/search?q=" + q);
+    if (q != null) {
+      if (onlySpaces.test(q)) {
+        navigate("/search?q=" + q);
+      }
     }
   }, [searchParams]);
+
   return (
     <AppBar
       id="appBar"
@@ -55,15 +41,37 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => {
+              dispatch(updatePage(1));
+            }}
+          >
             <img id="nfLogo" src={NotflixLogo} alt="" />
           </Link>
-          <Link to="/browse"> Browse</Link>
-          <OutlinedInput
-            style={{ color: "red", border: "1px solid red" }}
+          <Link
+            style={{ marginLeft: "25px" }}
+            to="/browse"
+            onClick={() => {
+              dispatch(updateBrowsing("Pick something! Right over there ↑"));
+              updatePage(1);
+            }}
+          >
+            {" "}
+            Browse
+          </Link>
+          <input
+            style={{
+              color: "white",
+              background: "transparent",
+              border: "3px solid whitesmoke",
+              marginLeft: "50px",
+              height: "40px",
+              paddingLeft: "10px",
+              borderRadius: "5px",
+            }}
             placeholder="Search"
-            value={q}
-            defaultValue={``}
+            type="text"
             onChange={handleSearch}
           />
         </Toolbar>

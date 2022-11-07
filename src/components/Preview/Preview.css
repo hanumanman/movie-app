@@ -23,5 +23,9 @@ p {
 
 button:hover {
   opacity: 0.5;
-  background: white !important;
+  /* background: white !important; */
+}
+
+#button1:hover {
+  background-color: white;
 }

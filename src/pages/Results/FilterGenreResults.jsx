@@ -1,27 +1,22 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { asyncSearch } from "../../reducers/filterSlice";
+import { filterByGenre } from "../../reducers/filterSlice";
 import Pagination from "../../components/Pagination/Pagination";
 import MovieList from "../../components/MovieList/MovieList";
 
-function SearchResult() {
-  const [searchParams, setSearchParams] = useSearchParams();
+function FilterGenreResults() {
+  const genre = useParams();
+  const genreId = genre.genre;
   const movies = useSelector((state) => state.filter.results);
+  const dispatch = useDispatch();
   const pagesAmount = useSelector((state) => state.filter.pagesAmount);
   let currentPage = useSelector((state) => state.filter.currentPage);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    let query = searchParams.get("q");
-    const searchDebounce = setTimeout(() => {
-      dispatch(asyncSearch({ query, currentPage }));
-    }, 1500);
-    return () => {
-      clearTimeout(searchDebounce);
-    };
-  }, [searchParams, dispatch, currentPage]);
+    dispatch(filterByGenre({ genreId, currentPage }));
+  }, [genreId, currentPage, dispatch]);
+
   return (
     <>
       <MovieList movies={movies} />
@@ -30,4 +25,4 @@ function SearchResult() {
   );
 }
 
-export default SearchResult;
+export default FilterGenreResults;

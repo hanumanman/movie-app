@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./DetailPage.css";
 
 import { fetchCredit, fetchDescription, fetchImg } from "../../helpers/fetch";
@@ -9,7 +9,6 @@ function DetailPage() {
   let images = fetchImg(movieId);
   let description = fetchDescription(movieId);
   let cast = fetchCredit(movieId);
-
   return (
     <>
       <div id="detailContainer">

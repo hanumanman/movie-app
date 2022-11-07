@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from "react";
-import "./MovieList.css";
-import useFetch from "../../hooks/useFetch";
-import { API_KEY, BASE_URL } from "../../app/API/config";
-import MovieCard from "../MovieCard/MovieCard";
+import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
+import React from "react";
 import { Link } from "react-router-dom";
+import { IMG_BASE_URL } from "../../app/API/config";
+import ERROR_IMG from "../../assets/no-image.jpg";
 
-function MovieList({ genresId }) {
-  const [results, setResults] = useState([]);
-  console.log(genresId);
-  const { data, loading, error } = useFetch(
-    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genresId}&language=en-US`
-  );
-
-  useEffect(() => {
-    data ? setResults(data.results) : null;
-    console.log(data);
-    console.log(`result`, results);
-  }, [data, results]);
-
+function MovieList({ movies }) {
   return (
-    <>
-      <ul className="movieList">
-        {results &&
-          results.map((result, index) => (
-            <li key={`movie${index}`}>
-              <Link to={`/movie/${result.id}`}>
-                <MovieCard imgPath={result.poster_path} />
-              </Link>
-            </li>
-          ))}
-      </ul>
-    </>
+    <ImageList cols={3}>
+      {movies?.map((item, index) => (
+        <Link key={index} to={`/movie/${item.id}`}>
+          <ImageListItem>
+            <img
+              src={
+                item.poster_path
+                  ? `${IMG_BASE_URL}/${item.poster_path}`
+                  : `${ERROR_IMG}`
+              }
+              alt={item.title}
+              loading="lazy"
+            />
+            <ImageListItemBar title={item.title} />
+          </ImageListItem>
+        </Link>
+      ))}
+    </ImageList>
   );
 }
 

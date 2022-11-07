@@ -8,9 +8,9 @@
   padding: 0;
 }
 
-.movieList::-webkit-scrollbar { 
+/* .movieList::-webkit-scrollbar { 
   display: none;
-}
+} */
 
 .movieListItem {
   background-color: brown;

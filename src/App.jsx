@@ -7,7 +7,9 @@ import DetailPage from "./pages/DetailPage/DetailPage";
 import { Route, Routes } from "react-router-dom";
 import FiltersPage from "./pages/FiltersPage/FiltersPage";
 import SearchResult from "./pages/Results/SearchResult";
-import FilterResults from "./pages/Results/FilterResults";
+import FilterGenreResults from "./pages/Results/FilterGenreResults";
+import FilterTopRatedResults from "./pages/Results/FilterTopRatedResults";
+import FilterNewestResult from "./pages/Results/FilterNewestResult";
 
 function App() {
   return (
@@ -18,9 +20,11 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/movie/:movieId" element={<DetailPage />} />
         <Route path="/browse" element={<FiltersPage />}>
-          <Route path="genre/:genre" element={<FilterResults />} />
+          <Route path="genre/:genre" element={<FilterGenreResults />} />
+          <Route path="top-rated" element={<FilterTopRatedResults />} />
+          <Route path="newest" element={<FilterNewestResult />} />
         </Route>
-        <Route path="/search/*" element={<SearchResult />} />
+        <Route path="search/*" element={<SearchResult />} />
       </Routes>
     </React.Fragment>
   );
